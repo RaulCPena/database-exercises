@@ -25,4 +25,4 @@ WHERE sales < 20;
 
 SELECT *
 FROM albums
-WHERE genre = 'rock';
+WHERE genre = 'rock'; # can use LIKE instead of equal sign
