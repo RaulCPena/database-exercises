@@ -4,7 +4,18 @@ USE employees;
 
 SELECT first_name, gender
 FROM employees
-WHERE (first_name = ('Irena') OR first_name = ('Vidya') OR first_name = ('Maya')) AND gender = 'M';
+WHERE (first_name = 'Irena' OR 
+first_name = 'Vidya' OR 
+first_name = 'Maya') AND 
+gender = 'M';
+
+/*
+SELECT first_name
+FROM employees
+WHERE first_name = 'Irena OR
+first_name = 'Vidya OR
+first_name = 'Maya;
+*/
 
 SELECT last_name
 FROM employees
