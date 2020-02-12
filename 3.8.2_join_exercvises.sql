@@ -6,9 +6,7 @@
 USE join_example_db;
 SELECT * FROM users;
 SELECT * FROM roles;
-
 -- Question 2
---		JOIN/INNER JOIN
 SELECT users.name AS user_name, roles.name AS role_name
 FROM users
 JOIN roles ON users.role_id = roles.id;
@@ -24,7 +22,6 @@ FROM users
 RIGHT JOIN roles ON users.role_id = roles.id;
 
 -- Question 3
-
 SELECT 
 	COUNT(*), 
 	roles.name AS role_name 
@@ -38,6 +35,7 @@ GROUP BY role_name;
 USE employees;
 
 -- Question 2
+
 SELECT d.dept_name as 'Department Name', CONCAT(e.first_name,' ',e.last_name) AS 'Department Manager'
 FROM departments as d
 JOIN dept_manager as dm ON (dm.dept_no=d.dept_no)
@@ -46,6 +44,7 @@ WHERE dm.to_date='9999-01-01'
 ORDER BY d.dept_name ASC;
 
 -- Question 3
+
 SELECT d.dept_name as 'Department Name', CONCAT(e.first_name,' ',e.last_name) AS 'Department Manager'
 FROM departments as d
 JOIN dept_manager as dm ON (dm.dept_no=d.dept_no)
@@ -54,6 +53,7 @@ WHERE dm.to_date='9999-01-01' AND e.gender='F'
 ORDER BY d.dept_name ASC;
 
 -- Question 4
+
 SELECT t.title AS Title,COUNT(*)
 FROM departments as d
 JOIN dept_emp AS de ON d.dept_no=de.dept_no
@@ -63,6 +63,7 @@ GROUP BY t.title
 ORDER BY t.title ASC;
 
 -- Question 5
+
 -- Question 6
 -- Question 7
 -- Question 8
