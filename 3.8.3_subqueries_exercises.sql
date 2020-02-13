@@ -57,12 +57,16 @@ JOIN salaries s ON e.emp_no = s.emp_no
 WHERE salary > (SELECT AVG(salary) FROM salaries) AND to_date > NOW();
 
 -- Question 6
+-- Max salary
+SELECT STDDEV(salary)
+FROM salaries;
+
 -- Find lower bound Standard Deviation
-SELECT MAX(salary) - STD(salary) AS 'lb'
+SELECT MAX(salary) - STDDEV(salary) AS 'lb'
 FROM salaries;
 
 -- Find upper bound Stamndard Deviation
-SELECT MAX(salary) + STD(salary) AS 'up'
+SELECT MAX(salary) + STDDEV(salary) AS 'up'
 FROM salaries;
 
 -- Find total current salaries between 
@@ -82,10 +86,10 @@ WHERE to_date > NOW();
 -- Find percentage of salaries
 SELECT (SELECT COUNT(*)
 FROM salaries
-WHERE salary BETWEEN 
-	(SELECT MAX(salary) - STD(salary) AS 'lb' FROM salaries)
+WHERE salary >= /* instead of BETWEEN */
+	(SELECT MAX(salary) - STDDEV(salary) AS 'lb' FROM salaries)
 	AND	
-	(SELECT MAX(salary) + STD(salary) AS 'up' FROM salaries)
+	(SELECT MAX(salary) + STDDEV(salary) AS 'up' FROM salaries)
 AND to_date > NOW()) / (SELECT COUNT(*)
 FROM salaries
 WHERE to_date > NOW()) * 100;
