@@ -41,10 +41,25 @@ FROM employees
 GROUP BY Born_by_decade
 ;
 
+-- BONUS QUESTION
+-- AVG Salary for R&D, Sales & Marketing, Prod & QM, Finance & HR, Customer Service
 
-
-
-
+SELECT 
+	CASE    
+        WHEN dept_name IN ('finance', 'human resource') THEN 'Finance & HR'
+        WHEN dept_name IN ('sales', 'marketing') THEN 'Sales & Marketing'
+        WHEN dept_name IN ('production', 'quality management') THEN 'Prod & QM'
+        WHEN dept_name IN ('research', 'development') THEN 'R&D'
+        ELSE dept_name
+        END AS dept_group,
+      AVG(salary) AS avg_salary
+FROM salaries
+JOIN dept_emp USING(emp_no)
+JOIN departments USING(dept_no)
+/* WHERE dept_emp.to_date > now() Unknown if we need current or historical data. 
+AND salaries.to_date > now() */
+GROUP BY dept_group
+ORDER BY avg_salary;
 
 
 
